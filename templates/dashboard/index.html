@@ -1036,7 +1036,9 @@
                       FreshCart is simple & clean design for developer and
                       designer.
                     </p>
-                    <a href="#" class="btn btn-primary">Create Product</a>
+                    <a href="{% url 'create_product' %}" class="btn btn-primary"
+                      >Create Product</a
+                    >
                   </div>
                 </div>
               </div>
@@ -1064,7 +1066,9 @@
                       </div>
                       <!-- project number -->
                       <div class="lh-1">
-                        <h1 class="mb-2 fw-bold fs-2">$93,438.78</h1>
+                        <h1 class="mb-2 fw-bold fs-2">
+                          ${{ monthly_earnings|floatformat:2 }}
+                        </h1>
                         <span>Monthly revenue</span>
                       </div>
                     </div>
@@ -1119,9 +1123,11 @@
                       </div>
                       <!-- project number -->
                       <div class="lh-1">
-                        <h1 class="mb-2 fw-bold fs-2">39,354</h1>
+                        <h1 class="mb-2 fw-bold fs-2">{{ total_customers }}</h1>
                         <span>
-                          <span class="text-dark me-1">30+</span>
+                          <span class="text-dark me-1"
+                            >{{ new_customers_2_days }}+</span
+                          >
                           new in 2 days
                         </span>
                       </div>

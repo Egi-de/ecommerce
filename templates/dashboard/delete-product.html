@@ -1,0 +1,82 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Delete Product - Dashboard{% endblock %}
+
+{% block content %}
+<main class="main-content-wrapper">
+    <div class="container">
+        <!-- row -->
+        <div class="row mb-8">
+            <div class="col-md-12">
+                <div class="d-md-flex justify-content-between align-items-center">
+                    <div>
+                        <h2>Delete Product</h2>
+                        <!-- breadcrumb -->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="{% url 'dashboard' %}" class="text-inherit">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="{% url 'products_list' %}" class="text-inherit">Products</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Delete Product</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div>
+                        <a href="{% url 'products_list' %}" class="btn btn-light">Back to Products</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete confirmation -->
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-12">
+                <div class="card">
+                    <div class="card-body p-6">
+                        <div class="text-center">
+                            <div class="mb-4">
+                                <i class="bi bi-exclamation-triangle text-warning" style="font-size: 4rem;"></i>
+                            </div>
+                            <h4 class="mb-3">Are you sure?</h4>
+                            <p class="mb-4">
+                                You are about to delete the product "<strong>{{ product.name }}</strong>". 
+                                This action cannot be undone.
+                            </p>
+                            
+                            <!-- Product details -->
+                            <div class="card bg-light mb-4">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        {% if product.image %}
+                                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-thumbnail me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                                        {% else %}
+                                            <div class="bg-secondary rounded me-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                                <i class="bi bi-image text-white"></i>
+                                            </div>
+                                        {% endif %}
+                                        <div class="text-start">
+                                            <h6 class="mb-1">{{ product.name }}</h6>
+                                            <small class="text-muted">{{ product.category }} • ${{ product.price }}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Action buttons -->
+                            <form method="post" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger me-2">
+                                    <i class="bi bi-trash me-2"></i>Yes, Delete Product
+                                </button>
+                            </form>
+                            <a href="{% url 'products_list' %}" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left me-2"></i>Cancel
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
