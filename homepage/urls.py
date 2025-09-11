@@ -11,8 +11,6 @@ urlpatterns = [
 
     # Product detail page (dynamic)
     path('product/<int:product_id>/', views.product_detail, name='product_detail'),
-    # path('contact/', views.contact, name='contact'),
-    # path('404/', views.error_404, name='error_404'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
     path('404/', views.error_404, name='error_404'),
