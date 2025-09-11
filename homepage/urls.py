@@ -18,4 +18,9 @@ urlpatterns = [
     path('blog/', views.blog, name='blog'),
     path('blog/<int:id>/', views.blog_single, name='blog_single'),
     path('blog/category/<str:category>/', views.blog_category, name='blog_category'),
+
+    # Store pages
+    path('store-list/', views.store_list, name='store-list'),
 ]
+
+     

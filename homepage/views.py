@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Store
 
 # Create your views here.
 
@@ -48,3 +49,9 @@ def blog_single(request, id=1):
 def blog_category(request, category='general'):
     """Blog category page"""
     return render(request, 'pages/blog-category.html')
+
+def store_list(request):
+    """Store list page"""
+    stores = Store.objects.all()
+
+    return render(request, 'pages/store-list.html', {'stores': stores})
