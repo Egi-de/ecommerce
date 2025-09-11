@@ -9,11 +9,14 @@ urlpatterns = [
     path('home-4/', views.home_4, name='home_4'),
     path('home-5/', views.home_5, name='home_5'),
 
-    # Informational pages
+    # Product detail page (dynamic)
+    path('product/<int:product_id>/', views.product_detail, name='product_detail'),
+    # path('contact/', views.contact, name='contact'),
+    # path('404/', views.error_404, name='error_404'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
     path('404/', views.error_404, name='error_404'),
-
+    
     # Blog pages
     path('blog/', views.blog, name='blog'),
     path('blog/<int:id>/', views.blog_single, name='blog_single'),

@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from .models import Product, About , Contact, Error_404
 
 # Create your views here.
 
@@ -23,17 +24,35 @@ def home_5(request):
     """Home 5"""
     return render(request, 'pages/index-5.html')
 
-# Informational pages
+# Product detail page (dynamic)
+def product_detail(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    return render(request, 'pages/product_detail.html', {"product": product})
+
 def about(request):
-    """About us page"""
+    if request.method == "POST":
+        email = request.POST.get("formAboutEmail")
+
+        data_entry = About(email=email)
+        data_entry.save()
+
     return render(request, 'pages/about.html')
 
 def contact(request):
-    """Contact page"""
+    if request.method == "POST":
+        phone_number = request.POST.get("formContactPhone")
+        email = request.POST.get("formContactEmail")
+
+        data_entry = Contact(phone_number=phone_number, email=email)
+        data_entry.save()
     return render(request, 'pages/contact.html')
 
+
 def error_404(request):
-    """404 Error page"""
+    if request.method == "POST":
+        message = request.POST.get("formErrorMessage")
+        data_entry = Error_404(message=message)
+        data_entry.save()
     return render(request, 'pages/404error.html')
 
 # Blog pages
